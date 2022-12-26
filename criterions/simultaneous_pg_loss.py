@@ -57,7 +57,7 @@ class PolicyGradientCriterion(FairseqCriterion):
             tmp_rewards = []
             running_add = 0.
             for t in range(len(batch_actions)):
-                running_add = batch_rewards * (self.gamma ** t)
+                running_add = batch_rewards * (self.gamma ** t) + running_add
                 tmp_rewards.insert(0, running_add)
             discounted_rewards.append(torch.FloatTensor(tmp_rewards).to(actions[0].device))
 
